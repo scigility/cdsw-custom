@@ -19,9 +19,15 @@ _Beware: The first time you start a session, CDSW has to pull the image from Doc
 
 ## cdsw-tesseract
 
-Docker image with `tesseract` and `imagemick` libraries preinstalled for OCR.
+Docker image for CDSW with `tesseract` plus library dependencies `imagemick` & `libjpeg62` which are needed to to OCR via Apache Tika.
+
+You can use this image to do OCR in a Jupyter notebook with Apache Toree kernel together with the following imports:
+```scala
+%AddDeps org.apache.tika tika-core 1.22 --transitive
+%AddDeps org.apache.tika tika-parsers 1.22 --transitive
+```
 
 
-### Additional Links
+## Additional Links
 
-If you need further help, head over to Cloudera's excellent documentation: https://docs.cloudera.com/documentation/data-science-workbench/1-6-x/topics/cdsw_editors_browser.html
+If you need further help for the CDSW setup, head over to Cloudera's excellent documentation: https://docs.cloudera.com/documentation/data-science-workbench/1-6-x/topics/cdsw_editors_browser.html
