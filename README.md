@@ -17,6 +17,11 @@ If you now select this engine in a new project and start a session, a web versio
 
 _Beware: The first time you start a session, CDSW has to pull the image from DockerHub, which can take quite some time (depending on the speed of the internet connection of your CDSW host)!_
 
+## cdsw-tesseract
+
+Docker image with `tesseract` and `imagemick` libraries preinstalled for OCR.
+
+
 ### Additional Links
 
 If you need further help, head over to Cloudera's excellent documentation: https://docs.cloudera.com/documentation/data-science-workbench/1-6-x/topics/cdsw_editors_browser.html
