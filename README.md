@@ -19,9 +19,9 @@ _Beware: The first time you start a session, CDSW has to pull the image from Doc
 
 ## cdsw-tesseract
 
-Docker image for CDSW with `tesseract` plus library dependencies `imagemick` & `libjpeg62` which are needed to to OCR via Apache Tika.
+Docker image for CDSW with `tesseract` plus library dependencies `imagemagick` & `libjpeg62` which are needed to do OCR via Apache Tika.
 
-You can use this image to do OCR in a Jupyter notebook with Apache Toree kernel together with the following imports:
+You can use this image in a Jupyter notebook with Apache Toree kernel together with the following imports:
 ```scala
 %AddDeps org.apache.tika tika-core 1.22 --transitive
 %AddDeps org.apache.tika tika-parsers 1.22 --transitive
