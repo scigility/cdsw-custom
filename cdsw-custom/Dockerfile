@@ -26,11 +26,5 @@ RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 # --- install Toree Kernel for Jupyter
 
-RUN pip install --upgrade toree
-RUN jupyter toree install --spark_home=$SPARK_HOME --user
-
-
-# --- install Python2 kernel for Jupyter
-
-RUN python2 -m pip install ipykernel
-RUN python2 -m ipykernel install --user
+RUN pip install --no-cache-dir --upgrade toree
+# be sure to include 'jupyter toree install --spark_home=$SPARK_HOME --user' in your Jupyter startup command
