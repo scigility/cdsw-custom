@@ -30,7 +30,8 @@ You can use this image in a Jupyter notebook with Apache Toree kernel together w
 ## cdsw-custom
 
 Docker image for CDSW with some custom configurations:
-- RStudio (based on official Cloudera documentation, see section above)
+- RStudio (based on official Cloudera documentation, see section above for details)
+- Tesseract and dependent libraries (see section above for details)
 - Apache Toree kernel for Jupyter (include `jupyter toree install --spark_home=$SPARK_HOME --user` in your Jupyter editor startup command)
 
 

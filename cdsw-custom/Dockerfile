@@ -28,3 +28,8 @@ RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 RUN pip install --no-cache-dir --upgrade toree
 # be sure to include 'jupyter toree install --spark_home=$SPARK_HOME --user' in your Jupyter startup command
+
+
+# --- install Tesseract and dependencies
+
+RUN apt-get install tesseract-ocr tesseract-ocr-all imagemagick libjpeg62 -y
