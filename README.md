@@ -27,6 +27,13 @@ You can use this image in a Jupyter notebook with Apache Toree kernel together w
 %AddDeps org.apache.tika tika-parsers 1.22 --transitive
 ```
 
+## cdsw-custom
+
+Docker image for CDSW with some custom configurations:
+- RStudio (based on official Cloudera documentation, see section above)
+- Apache Toree kernel for Jupyter
+- Python2 kernel for Jupyter
+
 
 ## Additional Links
 
