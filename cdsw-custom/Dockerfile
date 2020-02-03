@@ -33,3 +33,8 @@ RUN pip install --no-cache-dir --upgrade toree
 # --- install Tesseract and dependencies
 
 RUN apt-get install tesseract-ocr tesseract-ocr-all imagemagick libjpeg62 -y
+
+
+# --- create python3 symlink analogeous to rest of cluster (note: this is cluster specific)
+
+RUN sudo ln -s /usr/local/bin/python3 /bin/python3 
