@@ -45,10 +45,11 @@ RUN tar xf leptonica-1.79.0.tar.gz && \
     make && \
     make install
 
-RUN git clone https://github.com/tesseract-ocr/tesseract/ && \
-    cd tesseract
+RUN wget https://github.com/tesseract-ocr/tesseract/archive/4.1.1.tar.gz
 
-RUN sh autogen.sh  && \
+RUN tar xf 4.1.1.tar.gz && \
+    cd 4.1.1 && \
+    sh autogen.sh  && \
     ./configure  && \
     LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make  && \
     make install  && \
