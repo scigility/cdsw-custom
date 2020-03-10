@@ -34,7 +34,7 @@ RUN pip install --no-cache-dir --upgrade toree
 
 # --- install Tesseract (following instructions from https://orionfoysal.github.io/Installing-Tesseract4.0/)
 
-RUN apt-get install -y g++ autoconf automake libtool autoconf-archive pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev # dependencies
+RUN apt-get install -y g++ autoconf automake libtool autoconf-archive pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev libjpeg62 imagemick # dependencies
 RUN apt-get install -y libicu-dev libpango1.0-dev libcairo2-dev # training tools
 
 RUN wget http://www.leptonica.org/source/leptonica-1.79.0.tar.gz
