@@ -45,11 +45,6 @@ RUN tar xf leptonica-1.79.0.tar.gz && \
     make && \
     make install
 
-RUN add-apt-repository ppa:alex-p/tesseract-ocr && \
-    apt-get update && \
-    apt-get install -y libleptonica-dev && \
-    ldconfig
-
 RUN git clone https://github.com/tesseract-ocr/tesseract/ && \
     cd tesseract
 
