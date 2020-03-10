@@ -43,7 +43,8 @@ RUN tar xf leptonica-1.79.0.tar.gz && \
     cd leptonica-1.79.0 && \
     ./configure && \
     make && \
-    make install
+    make install %% \
+    cd ..
 
 RUN wget https://github.com/tesseract-ocr/tesseract/archive/4.1.1.tar.gz
 
@@ -54,8 +55,15 @@ RUN tar xf 4.1.1.tar.gz && \
     LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make  && \
     make install  && \
     make install -langs  && \
-    ldconfig
+    ldconfig && \
+    cd ..
 
 # language packs: eng + deu
 RUN wget -O /usr/local/share/tessdata/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
 RUN wget -O /usr/local/share/tessdata/deu.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/deu.traineddata
+
+# remove downloaded sources
+RUN rm -rf leptonica-1.79.0.tar.gz
+RUN rm -rf leptonica-1.79.0
+RUN rm -rf 4.1.1.tar.gz
+RUN rm -rf tesseract-4.1.1
