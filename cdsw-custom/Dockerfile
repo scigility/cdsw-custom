@@ -43,7 +43,7 @@ RUN tar xf leptonica-1.79.0.tar.gz && \
     cd leptonica-1.79.0 && \
     ./configure && \
     make && \
-    make install %% \
+    make install && \
     cd ..
 
 RUN wget https://github.com/tesseract-ocr/tesseract/archive/4.1.1.tar.gz
