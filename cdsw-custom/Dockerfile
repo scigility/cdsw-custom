@@ -24,17 +24,42 @@ COPY rstudio-cdsw /usr/local/bin/rstudio-cdsw
 RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 
+
 # --- install Toree Kernel for Jupyter
 
 RUN pip install --no-cache-dir --upgrade toree
 # be sure to include 'jupyter toree install --spark_home=$SPARK_HOME --user' in your Jupyter startup command
 
 
-# --- install Tesseract and dependencies
 
-RUN apt-get install tesseract-ocr tesseract-ocr-all imagemagick libjpeg62 -y
+# --- install Tesseract (following instructions from https://orionfoysal.github.io/Installing-Tesseract4.0/)
 
+RUN apt-get install -y g++ autoconf automake libtool autoconf-archive pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev # dependencies
+RUN apt-get install -y libicu-dev libpango1.0-dev libcairo2-dev # training tools
 
-# --- create python3 symlink analogeous to rest of cluster (note: this is cluster specific)
+RUN wget http://www.leptonica.org/source/leptonica-1.79.0.tar.gz
 
-RUN sudo ln -s /usr/local/bin/python3 /bin/python3 
+RUN tar xf leptonica-1.79.0.tar.gz && \
+    cd leptonica-1.79.0 && \
+    ./configure && \
+    make && \
+    make install
+
+RUN add-apt-repository ppa:alex-p/tesseract-ocr && \
+    apt-get update && \
+    apt-get install -y libleptonica-dev && \
+    ldconfig
+
+RUN git clone https://github.com/tesseract-ocr/tesseract/ && \
+    cd tesseract
+
+RUN sh autogen.sh  && \
+    ./configure  && \
+    LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make  && \
+    make install  && \
+    make install -langs  && \
+    ldconfig
+
+# language packs: eng + deu
+RUN wget -O /usr/local/share/tessdata/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
+RUN wget -O /usr/local/share/tessdata/deu.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/deu.traineddata
