@@ -1,6 +1,6 @@
 #Dockerfile
 
-FROM docker.repository.cloudera.com/cdsw/engine:8
+FROM docker.repository.cloudera.com/cdsw/engine:10
 
 WORKDIR /tmp
 
@@ -12,10 +12,11 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     libclang-dev \
     lsb-release \
     psmisc \
+    libapparmor1 \
     sudo
 
-RUN wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.1335-amd64.deb && \
-    dpkg -i rstudio-server-1.2.1335-amd64.deb
+RUN wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5033-amd64.deb && \
+    dpkg -i rstudio-server-1.2.5033-amd64.deb
 
 COPY rserver.conf /etc/rstudio/rserver.conf
 

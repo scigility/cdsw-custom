@@ -7,14 +7,7 @@ This repository contains some useful custom docker images for the Cloudera Data 
 ### cdsw-rstudio
 
 Docker image with browser based RStudio for CDSW, based on the official Cloudera documentation.
-
-You can directly use this docker image within your CDSW installation:
-- Log in as administrator
-- Go to Admin -> Engines
-- add _matthiaspfenninger/cdsw-rstudio_ to the list of engines
-- click the _Add Editor_ button and add _RStudio_ with the command _/usr/local/bin/rstudio-cdsw_
-
-If you now select this engine in a new project and start a session, a web version of RStudio will start. Have fun!
+After building the docker image and adding it to your CDSW instance, add an editor _RStudio_ with the command _/usr/local/bin/rstudio-cdsw_.
 
 ### cdsw-tesseract
 
