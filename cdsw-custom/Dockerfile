@@ -28,8 +28,10 @@ RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 # --- install Toree Kernel for Jupyter
 
+COPY . /opt/cloudera/parcels/CDH/lib/spark
 RUN pip install --no-cache-dir --upgrade toree
-# be sure to include 'jupyter toree install --spark_home=$SPARK_HOME --user' in your Jupyter startup command
+RUN jupyter toree install --sys-prefix --spark_home=/opt/cloudera/parcels/CDH/lib/spark
+RUN rm -rf /opt/cloudera
 
 
 
