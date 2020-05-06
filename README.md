@@ -24,7 +24,12 @@ You can use this image in a Jupyter notebook with Apache Toree kernel together w
 Docker image for CDSW with some custom configurations:
 - RStudio (based on official Cloudera documentation, see section above for details)
 - Tesseract and dependent libraries (loosely following the instructions from [this blog](https://orionfoysal.github.io/Installing-Tesseract4.0/)
-- Apache Toree kernel for Jupyter (include `jupyter toree install --spark_home=$SPARK_HOME --user` in your Jupyter editor startup command)
+- Apache Toree kernel for Jupyter
+
+Note that this Dockerfile is designed to be used with the external Spark distribution of a Cloudera cluster.
+- The Dockerfile must be built inside an existing Spark installation (`[...]/lib/spark`).
+- This Spark installation is copied to the build context only to configure Apache Toree, **but is removed from the image again afterwards**. 
+- When running the container, Apache Toree expects Spark to be installed under `/opt/cloudera/parcels/CDH/lib/spark` (i.e. that directory must be mounted at runtime).
 
 ## General Remarks
 
@@ -32,6 +37,6 @@ Docker image for CDSW with some custom configurations:
 
 The first time you start a session, CDSW has to pull the image from DockerHub, which can take quite some time (depending on the speed of the internet connection of your CDSW host).
 
-## Additional Links
+### Additional Links
 
 If you need further help for the CDSW setup, head over to Cloudera's excellent documentation: https://docs.cloudera.com/documentation/data-science-workbench/1-6-x/topics/cdsw_editors_browser.html
