@@ -70,3 +70,7 @@ RUN rm -rf leptonica-1.79.0.tar.gz
 RUN rm -rf leptonica-1.79.0
 RUN rm -rf 4.1.1.tar.gz
 RUN rm -rf tesseract-4.1.1
+
+# set python3 as default python
+RUN ln -s -f /usr/local/bin/python3 /usr/local/bin/python
+RUN ln -s -f /usr/bin/python3 /usr/bin/python 
