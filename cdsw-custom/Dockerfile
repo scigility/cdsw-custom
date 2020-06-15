@@ -25,52 +25,28 @@ COPY rstudio-cdsw /usr/local/bin/rstudio-cdsw
 RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 
-
 # --- install Toree Kernel for Jupyter
 
 COPY . /opt/cloudera/parcels/CDH/lib/spark
-RUN pip install --no-cache-dir --upgrade toree
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir --upgrade toree
 RUN jupyter toree install --sys-prefix --spark_home=/opt/cloudera/parcels/CDH/lib/spark
 RUN rm -rf /opt/cloudera
 
 
-
-# --- install Tesseract (following instructions from https://orionfoysal.github.io/Installing-Tesseract4.0/)
+# --- install Tesseract
 
 RUN apt-get install -y g++ autoconf automake libtool autoconf-archive pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev libjpeg62 imagemagick # dependencies
 RUN apt-get install -y libicu-dev libpango1.0-dev libcairo2-dev # training tools
 
-RUN wget http://www.leptonica.org/source/leptonica-1.79.0.tar.gz
+RUN add-apt-repository ppa:alex-p/tesseract-ocr && \
+    apt-get update && \
+    apt-get install -y libleptonica-dev tesseract-ocr tesseract-ocr-eng tesseract-ocr-deu && \
+    ldconfig
 
-RUN tar xf leptonica-1.79.0.tar.gz && \
-    cd leptonica-1.79.0 && \
-    ./configure && \
-    make && \
-    make install && \
-    cd ..
 
-RUN wget https://github.com/tesseract-ocr/tesseract/archive/4.1.1.tar.gz
+# --- set python3 as default Python version
 
-RUN tar xf 4.1.1.tar.gz && \
-    cd tesseract-4.1.1 && \
-    sh autogen.sh  && \
-    ./configure  && \
-    LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make  && \
-    make install  && \
-    make install -langs  && \
-    ldconfig && \
-    cd ..
-
-# language packs: eng + deu
-RUN wget -O /usr/local/share/tessdata/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
-RUN wget -O /usr/local/share/tessdata/deu.traineddata https://github.com/tesseract-ocr/tessdata/raw/master/deu.traineddata
-
-# remove downloaded sources
-RUN rm -rf leptonica-1.79.0.tar.gz
-RUN rm -rf leptonica-1.79.0
-RUN rm -rf 4.1.1.tar.gz
-RUN rm -rf tesseract-4.1.1
-
-# set python3 as default python
 RUN ln -s -f /usr/local/bin/python3 /usr/local/bin/python
-RUN ln -s -f /usr/bin/python3 /usr/bin/python 
+RUN ln -s -f /usr/bin/python3 /usr/bin/python
+
