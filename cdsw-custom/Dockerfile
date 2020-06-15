@@ -44,6 +44,8 @@ RUN add-apt-repository ppa:alex-p/tesseract-ocr && \
     apt-get install -y libleptonica-dev tesseract-ocr tesseract-ocr-eng tesseract-ocr-deu && \
     ldconfig
 
+RUN apt-get -y clean && apt-get -y autoclean # cleanup
+
 
 # --- set python3 as default Python version
 
