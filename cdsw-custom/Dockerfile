@@ -47,8 +47,11 @@ RUN add-apt-repository ppa:alex-p/tesseract-ocr && \
 RUN apt-get -y clean && apt-get -y autoclean # cleanup
 
 
-# --- set python3 as default Python version
+# --- set python3 as default Python version (also for pip)
 
-RUN ln -s -f /usr/local/bin/python3 /usr/local/bin/python
-RUN ln -s -f /usr/bin/python3 /usr/bin/python
+RUN ln -s -f /usr/local/bin/python3 /usr/local/bin/python && \
+    ln -s -f /usr/bin/python3 /usr/bin/python && \
+    ln -s -f /usr/local/bin/pip3.6 /usr/local/bin/pip3 && \
+    ln -s -f /usr/local/bin/pip3.6 /usr/local/bin/pip
 
+RUN pip install --upgrade pip # make sure main pip version is up-to-date
