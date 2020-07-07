@@ -11,6 +11,7 @@ Custom configuration compared to the Cloudera base image:
     - Tesseract v4.1.1
     - Apache Toree kernel v0.3.0 for Jupyter
 - Upgrades
+    - `R` v3.6.3 (from 3.5.1)
     - `python` links to Python 3 as default version
     - `pip` links to Python 3 as default version
 
