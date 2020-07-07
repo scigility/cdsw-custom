@@ -18,16 +18,16 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 RUN wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5033-amd64.deb && \
     dpkg -i rstudio-server-1.2.5033-amd64.deb
 
-COPY rserver.conf /etc/rstudio/rserver.conf
+COPY rstudio-config/rserver.conf /etc/rstudio/rserver.conf
 
-COPY rstudio-cdsw /usr/local/bin/rstudio-cdsw
+COPY rstudio-config/rstudio-cdsw /usr/local/bin/rstudio-cdsw
 
 RUN chmod +x /usr/local/bin/rstudio-cdsw
 
 
 # --- install Toree Kernel for Jupyter
 
-COPY . /opt/cloudera/parcels/CDH/lib/spark
+COPY ./spark /opt/cloudera/parcels/CDH/lib/spark
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir --upgrade toree
 RUN jupyter toree install --sys-prefix --spark_home=/opt/cloudera/parcels/CDH/lib/spark
