@@ -7,12 +7,12 @@ Custom docker image for CDSW based on official Cloudera base image v10 `docker.r
 Custom configuration compared to the Cloudera base image:
 
 - New installations
-  - RStudio v1.2.5033
-  - Tesseract v4.1.1
-  - Apache Toree kernel v0.3.0 for Jupyter
+    - RStudio v1.2.5033
+    - Tesseract v4.1.1
+    - Apache Toree kernel v0.3.0 for Jupyter
 - Upgrades
-  - `python` links to Python 3 as default version
-  - `pip` links to Python 3 as default version
+    - `python` links to Python 3 as default version
+    - `pip` links to Python 3 as default version
 
 Note that this Docker image is designed to be used from CDSW with an existing Cloudera CDH installation:
 Some executables like e.g. Java and Spark are not part of the image, but expected to be mounted at runtime by CDSW.
@@ -58,10 +58,10 @@ You can use Tesseract in two ways:
 - Tesseract CLI: Enter `tesseract --help` on the command line for more details
 - Via [Apache Tika](https://tika.apache.org/) and Scala/Spark: Add Tika as a library dependency to your Scala program - in a Jupyter notebook e.g. by executing:
 
-    ```scala
-    %AddDeps org.apache.tika tika-core 1.22 --transitive
-    %AddDeps org.apache.tika tika-parsers 1.22 --transitive
-    ```
+```scala
+%AddDeps org.apache.tika tika-core 1.22 --transitive
+%AddDeps org.apache.tika tika-parsers 1.22 --transitive
+```
 
 ## CDSW Image Startup Time
 
