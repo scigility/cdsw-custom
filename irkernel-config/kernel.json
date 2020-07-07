@@ -1,0 +1,5 @@
+{
+  "argv": ["/usr/local/lib/R/bin/R", "--slave", "-e", "options(bitmapType='cairo'); .libPaths(c('/home/cdsw/R', libPaths())); IRkernel::main()", "--args", "{connection_file}"],
+  "display_name": "R",
+  "language": "R"
+}

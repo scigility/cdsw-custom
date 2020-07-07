@@ -34,6 +34,18 @@ RUN jupyter toree install --sys-prefix --spark_home=/opt/cloudera/parcels/CDH/li
 RUN rm -rf /opt/cloudera
 
 
+# --- install IRkernel (R) for Jupyter
+
+RUN apt-get update --fix-missing && \
+    apt-get install -y libzmq3-dev libcurl4-openssl-dev libssl-dev jupyter-core jupyter-client
+
+RUN Rscript -e "install.packages(c('repr', 'IRdisplay', 'IRkernel'), lib='/usr/local/lib/R/library', type = 'source', repos='https://cloud.r-project.org')" \
+    -e "IRkernel::installspec(user=FALSE)" \ 
+    -e "install.packages('Cairo', lib='/usr/local/lib/R/library', repos='https://cloud.r-project.org')"
+
+COPY irkernel-config/kernel.json /usr/local/share/jupyter/kernels/ir/
+
+
 # --- install Tesseract
 
 RUN apt-get install -y g++ autoconf automake libtool autoconf-archive pkg-config libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev libjpeg62 imagemagick # dependencies

@@ -10,6 +10,7 @@ Custom configuration compared to the Cloudera base image:
     - RStudio v1.2.5033
     - Tesseract v4.1.1
     - Apache Toree kernel v0.3.0 for Jupyter
+    - IRkernel v1.1 for Jupyter
 - Upgrades
     - `python` links to Python 3 as default version
     - `pip` links to Python 3 as default version
